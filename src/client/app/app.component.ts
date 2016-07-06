@@ -3,6 +3,8 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { MdToolbar } from '@angular2-material/toolbar';
 import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
+import { MD_SIDENAV_DIRECTIVES } from '@angular2-material/sidenav';
+import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
 
 import { Config, NameListService, NavbarComponent, ToolbarComponent } from './shared/index';
 
@@ -18,9 +20,14 @@ import { Config, NameListService, NavbarComponent, ToolbarComponent } from './sh
   directives: [
       ROUTER_DIRECTIVES,
       MD_CARD_DIRECTIVES,
+      MD_SIDENAV_DIRECTIVES,
       NavbarComponent,
       ToolbarComponent,
-      MdToolbar
+      MdToolbar,
+      MdIcon
+  ],
+  providers: [
+      MdIconRegistry
   ]
 })
 export class AppComponent {
