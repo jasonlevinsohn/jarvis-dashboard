@@ -6,6 +6,10 @@ import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
 import { MD_SIDENAV_DIRECTIVES } from '@angular2-material/sidenav';
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
 import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
+import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
+import { MD_RADIO_DIRECTIVES} from '@angular2-material/radio/radio';
+import { MdCheckbox } from '@angular2-material/checkbox/checkbox';
+import { MdUniqueSelectionDispatcher } from '@angular2-material/core/coordination/unique-selection-dispatcher';
 
 /**
  * This class represents the lazy loaded Dashboard Component
@@ -21,16 +25,18 @@ import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
         MD_LIST_DIRECTIVES,
         MD_SIDENAV_DIRECTIVES,
         MD_BUTTON_DIRECTIVES,
+        MD_INPUT_DIRECTIVES,
+        MD_RADIO_DIRECTIVES,
+        MdCheckbox,
         MdToolbar,
         MdIcon
     ],
-    providers: [
-        MdIconRegistry
-    ]
+    providers: [MdIconRegistry, MdUniqueSelectionDispatcher]
 })
 
 //TODO: Possibly could use `implements OnInit here
 export class DashboardComponent {
+    formShowing: boolean = false;
     sidenavs: Object[];
     widgets: Object[];
     constructor() {
