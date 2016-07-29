@@ -66,11 +66,18 @@ export class SeedConfig {
   COVERAGE_PORT = argv['coverage-port'] || 4004;
 
   /**
+  * The path to the coverage output
+  * NB: this must match what is configured in ./karma.conf.js
+  */
+  COVERAGE_DIR = 'coverage';
+
+  /**
    * The path for the base of the application at runtime.
-   * The default path is `/`, which can be overriden by the `--base` flag when running `npm start`.
+   * The default path is based on the environment ('/' for development and '' for production),
+   * which can be overriden by the `--base` flag when running `npm start`.
    * @type {string}
    */
-  APP_BASE = argv['base'] || '/';
+  APP_BASE = argv['base'] || (this.ENV === ENVIRONMENTS.DEVELOPMENT ? '/' : '');
 
   /**
    * The base path of node modules.
@@ -91,6 +98,17 @@ export class SeedConfig {
    * @type {number}
    */
   HOT_LOADER_PORT = 5578;
+
+  /**
+   * The build interval which will force the TypeScript compiler to perform a typed compile run.
+   * Between the typed runs, a typeless compile is run, which is typically much faster.
+   * For example, if set to 5, the initial compile will be typed, followed by 5 typeless runs,
+   * then another typed run, and so on.
+   * If a compile error is encountered, the build will use typed compilation until the error is resolved.
+   * The default value is `0`, meaning typed compilation will always be performed.
+   * @type {number}
+   */
+  TYPED_COMPILE_INTERVAL = 0;
 
   /**
    * The directory where the bootstrap file is located.
@@ -244,7 +262,7 @@ export class SeedConfig {
    * The default value is false. Override with the '--scss' flag.
    * @type {boolean}
    */
-  ENABLE_SCSS = argv['scss'] || false;
+  ENABLE_SCSS = argv['scss'] || true;
 
   /**
    * The list of NPM dependcies to be injected in the `index.html`.
@@ -292,7 +310,8 @@ export class SeedConfig {
     packageConfigPaths: [
       `/node_modules/*/package.json`,
       `/node_modules/**/package.json`,
-      `/node_modules/@angular/*/package.json`
+      `/node_modules/@angular/*/package.json`,
+      '/node_modules/@angular2-material/*/package.json'
     ],
     paths: {
       [this.BOOTSTRAP_MODULE]: `${this.APP_BASE}${this.BOOTSTRAP_MODULE}`,
@@ -309,7 +328,7 @@ export class SeedConfig {
       '*': `node_modules/*`
     },
     packages: {
-      rxjs: { defaultExtension: false }
+      rxjs: { defaultExtension: 'js' }
     }
   };
 
@@ -328,7 +347,8 @@ export class SeedConfig {
     defaultJSExtensions: true,
     packageConfigPaths: [
       join(this.PROJECT_ROOT, 'node_modules', '*', 'package.json'),
-      join(this.PROJECT_ROOT, 'node_modules', '@angular', '*', 'package.json')
+      join(this.PROJECT_ROOT, 'node_modules', '@angular', '*', 'package.json'),
+      join(this.PROJECT_ROOT, 'node_modules', '@angular2-material', '*', 'package.json')
     ],
     paths: {
       [`${this.TMP_DIR}/*`]: `${this.TMP_DIR}/*`,
@@ -390,6 +410,13 @@ export class SeedConfig {
   ];
 
   /**
+   * White list for CSS color guard
+   * @type {[string, string][]}
+   */
+  COLOR_GUARD_WHITE_LIST: [string, string][] = [
+  ];
+
+  /**
    * Configurations for NPM module configurations. Add to or override in project.config.ts.
    * If you like, use the mergeObject() method to assist with this.
    */
@@ -416,8 +443,30 @@ export class SeedConfig {
         }
       }
     },
+
     // Note: you can customize the location of the file
-    'environment-config': require('../env/config.json')
+    'environment-config': require('../env/config.json'),
+
+    /**
+     * The options to pass to gulp-sass (and then to node-sass).
+     * Reference: https://github.com/sass/node-sass#options
+     * @type {object}
+     */
+    'gulp-sass': {
+      includePaths: ['./node_modules/']
+    },
+
+    /**
+     * The options to pass to gulp-concat-css
+     * Reference: https://github.com/mariocasciaro/gulp-concat-css
+     * @type {object}
+     */
+    'gulp-concat-css': {
+      targetFile: this.CSS_PROD_BUNDLE,
+      options: {
+        rebaseUrls: false
+      }
+    }
   };
 
   /**

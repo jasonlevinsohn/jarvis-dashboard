@@ -1,0 +1,24 @@
+{
+  "libs": [
+    "browser",
+    "jquery",
+    "ecma5"
+  ],
+  "loadEagerly": [
+    "node_modules/@angular/common/bundles/common.umd.js",
+    "node_modules/@angular/core/bundles/core.umd.js",
+    "node_modules/@angular/http/bundles/http.umd.js",
+    "node_modules/@angular/http/http.js",
+  ],
+  "plugins": {
+    "requirejs": {
+      "baseURL": "./",
+      "paths": {}
+    },
+    "angular": {
+        "baseURL": "./",
+        "paths": {}
+    
+    }
+  }
+}

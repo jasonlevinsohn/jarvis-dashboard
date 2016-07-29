@@ -13,10 +13,17 @@ import { Config, NameListService, NavbarComponent, ToolbarComponent } from './sh
   selector: 'sd-app',
   viewProviders: [NameListService, HTTP_PROVIDERS],
   templateUrl: 'app.component.html',
-  directives: [ROUTER_DIRECTIVES, NavbarComponent, ToolbarComponent]
+  directives: [
+      ROUTER_DIRECTIVES,
+      NavbarComponent,
+      ToolbarComponent,
+  ],
 })
 export class AppComponent {
+
   constructor() {
     console.log('Environment config', Config);
+
   }
+
 }
