@@ -11,6 +11,8 @@ import { MD_RADIO_DIRECTIVES} from '@angular2-material/radio/radio';
 import { MdCheckbox } from '@angular2-material/checkbox/checkbox';
 import { MdUniqueSelectionDispatcher } from '@angular2-material/core/coordination/unique-selection-dispatcher';
 
+import { UserService } from '../shared/index';
+
 /**
  * This class represents the lazy loaded Dashboard Component
  */
@@ -31,7 +33,7 @@ import { MdUniqueSelectionDispatcher } from '@angular2-material/core/coordinatio
         MdToolbar,
         MdIcon
     ],
-    providers: [MdIconRegistry, MdUniqueSelectionDispatcher]
+    providers: [MdIconRegistry, MdUniqueSelectionDispatcher, UserService]
 })
 
 //TODO: Possibly could use `implements OnInit here
@@ -39,7 +41,7 @@ export class DashboardComponent {
     formShowing: boolean = false;
     sidenavs: Object[];
     widgets: Object[];
-    constructor() {
+    constructor(private user: UserService) {
         console.log('The Dashboard is alive');
         this.sidenavs = [
             {
@@ -60,6 +62,13 @@ export class DashboardComponent {
             {title: 'Farm Water'},
             {title: 'Chicken Coop Door'},
         ];
+    }
+
+    public checkUser() {
+        let returnValue: string = 'What';
+
+        returnValue = this.user.checkYoSelf();
+        console.log('User: ', returnValue);
     }
 
 
