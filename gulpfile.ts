@@ -131,4 +131,4 @@ gulp.task('clean.once', (done: any) => {
     util.log('Skipping clean on rebuild');
     done();
   }
-})
+});
