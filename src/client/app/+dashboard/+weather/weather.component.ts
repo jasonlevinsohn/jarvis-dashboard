@@ -6,10 +6,8 @@ import { Component } from '@angular/core';
     templateUrl: 'weather.component.html'
 })
 
-
 export class WeatherComponent {
     constructor() {
-        console.log('Weather Component');
+        console.log('Dashboard Weather Widget');
     }
-
 }

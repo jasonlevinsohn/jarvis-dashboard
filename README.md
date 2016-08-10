@@ -31,3 +31,12 @@
 
 ###### Notes
 * When creating components in order to use relative paths for SCSS/CSS/HTML instead of absolute paths you will need to add a property `moduleId: module.id`
+
+
+###### Deployment Notes to Nginx
+* The root of the app is jarvis-dashboard and is where the links are referenced from in the index.html file.  Eventhough 'index.html' itself is not on the root `dist/dev/index.html`
+* Under `Server` block, define root directive `root /webapps/jarvis_webapp/jarvis-dashboard;`
+* In `location /`, do `try_files $uri $uri/dist/dev/index.html`  In production change `dev` to `prod`
+* Also `main.js` is under `dist/dev` as well eventhough index.html file is saying its `/app/main.js` so we need to tell nginx where this file really is as well
+* In `location /app/ `, add `alias /webapps/jarvis_webapp/jarvis-dashboard/dist/dev/app/`
+

@@ -11,6 +11,10 @@ import { MD_RADIO_DIRECTIVES} from '@angular2-material/radio/radio';
 import { MdCheckbox } from '@angular2-material/checkbox/checkbox';
 import { MdUniqueSelectionDispatcher } from '@angular2-material/core/coordination/unique-selection-dispatcher';
 
+// Widgets
+import { WeatherComponent } from './+weather/weather.component';
+
+// Services
 import { UserService } from '../shared/index';
 
 /**
@@ -31,7 +35,8 @@ import { UserService } from '../shared/index';
         MD_RADIO_DIRECTIVES,
         MdCheckbox,
         MdToolbar,
-        MdIcon
+        MdIcon,
+        WeatherComponent
     ],
     providers: [MdIconRegistry, MdUniqueSelectionDispatcher, UserService]
 })
@@ -57,7 +62,6 @@ export class DashboardComponent {
         ];
 
         this.widgets = [
-            {title: 'Weather'},
             {title: 'Front Gate'},
             {title: 'Farm Water'},
             {title: 'Chicken Coop Door'},

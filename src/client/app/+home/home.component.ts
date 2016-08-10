@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 
 import { NameListService } from '../shared/index';
-import { WeatherComponent } from './+weather/weather.component';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -12,7 +11,7 @@ import { WeatherComponent } from './+weather/weather.component';
   selector: 'sd-home',
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css'],
-  directives: [REACTIVE_FORM_DIRECTIVES, WeatherComponent]
+  directives: [REACTIVE_FORM_DIRECTIVES]
 })
 export class HomeComponent implements OnInit {
 
