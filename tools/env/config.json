@@ -1,6 +1,6 @@
 {
   "dev": {
-    "API": "https://demo.com"
+    "API": "http://localhost:8000"
   },
   "prod": {
     "API": "https://prod.com"

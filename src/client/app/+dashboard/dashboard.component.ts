@@ -16,6 +16,7 @@ import { WeatherComponent } from './+weather/weather.component';
 
 // Services
 import { UserService } from '../shared/index';
+import { WeatherService } from '../shared/index';
 
 /**
  * This class represents the lazy loaded Dashboard Component
@@ -38,7 +39,7 @@ import { UserService } from '../shared/index';
         MdIcon,
         WeatherComponent
     ],
-    providers: [MdIconRegistry, MdUniqueSelectionDispatcher, UserService]
+    providers: [MdIconRegistry, MdUniqueSelectionDispatcher, UserService, WeatherService]
 })
 
 //TODO: Possibly could use `implements OnInit here
