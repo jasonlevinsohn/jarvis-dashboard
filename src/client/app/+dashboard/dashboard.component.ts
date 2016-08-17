@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 import { MdToolbar } from '@angular2-material/toolbar';
 import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
 import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
@@ -27,7 +26,6 @@ import { WeatherService } from '../shared/index';
     templateUrl: 'dashboard.component.html',
     styleUrls: ['dashboard.component.css'],
     directives: [
-        REACTIVE_FORM_DIRECTIVES,
         MD_CARD_DIRECTIVES,
         MD_LIST_DIRECTIVES,
         MD_SIDENAV_DIRECTIVES,
