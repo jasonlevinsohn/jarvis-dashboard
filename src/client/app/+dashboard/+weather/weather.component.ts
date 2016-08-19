@@ -9,23 +9,72 @@ import { WeatherService } from '../../shared/index';
 
 export class WeatherComponent implements OnInit {
     forecast: any[] = [];
+    names: any[] = [];
     errorMessage: string;
+    forecastData: Object = {};
 
     constructor(public weatherService: WeatherService) {
-    // constructor() {
         console.log('Dashboard Weather Widget');
     }
 
     ngOnInit() {
-        console.log('Calling Init');
         this.getForecast();
     }
 
     getForecast() {
         this.weatherService.get()
             .subscribe(
-                forecast => this.forecast = forecast,
+                forecast => {
+                    this.setForecastVars(forecast);
+                },
                 error => this.errorMessage = <any>error
             );
+    }
+
+    setForecastVars(forecastObj: any) {
+        let current: any = {};
+
+        current = forecastObj.currently;
+
+        this.forecastData = {
+            temperature: Math.round(current.temperature),
+            stormDistance: current.nearestStormDistance,
+            stormBearing: this.getEnumBearing(current.nearestStormBearing),
+            precipProb: current.precipProbability,
+            precipType: current.precipType,
+            summary: current.summary,
+            icon: current.icon,
+            windSpeed: current.windSpeed,
+            windBearing: this.getEnumBearing(current.windBearing)
+        };
+    }
+
+    getEnumBearing(trueBearing: number) {
+        let enumBearing: string;
+
+        /**
+         * 360 / 8 = 45
+         * Either side of that is 22.5, but we are going
+         * to just stick with 22 or 23
+         */
+        if (trueBearing > 338 || trueBearing <= 22) {
+            enumBearing = 'N';
+        } else if (trueBearing > 22 && trueBearing <= 67) {
+            enumBearing = 'NE';
+        } else if (trueBearing > 67 && trueBearing <= 112) {
+            enumBearing = 'E';
+        } else if (trueBearing > 112 && trueBearing <= 156) {
+            enumBearing = 'SE';
+        } else if (trueBearing > 156 && trueBearing <= 202) {
+            enumBearing = 'S';
+        } else if (trueBearing > 202 && trueBearing <= 246) {
+            enumBearing = 'SW';
+        } else if (trueBearing > 246 && trueBearing <= 292) {
+            enumBearing = 'W';
+        } else if (trueBearing > 292 && trueBearing <= 338) {
+            enumBearing = 'NW';
+        };
+
+        return enumBearing;
     }
 }
