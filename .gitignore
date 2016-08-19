@@ -1,4 +1,7 @@
-.DS_Store
+# Jarvis Project
+# We need to ignore path of api, because they are different
+# and its the only way I know how right now :)
+tools/env/base.ts
 
 # Logs
 logs
