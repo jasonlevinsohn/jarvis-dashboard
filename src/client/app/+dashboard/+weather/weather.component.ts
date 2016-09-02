@@ -4,7 +4,8 @@ import { WeatherService } from '../../shared/index';
 @Component({
     moduleId: module.id,
     selector: 'l3-weather',
-    templateUrl: 'weather.component.html'
+    templateUrl: 'weather.component.html',
+    styleUrls: ['weather.component.css']
 })
 
 export class WeatherComponent implements OnInit {
@@ -47,6 +48,8 @@ export class WeatherComponent implements OnInit {
             windSpeed: current.windSpeed,
             windBearing: this.getEnumBearing(current.windBearing)
         };
+
+        console.log('Current Forecast Data: %o', this.forecastData);
     }
 
     getEnumBearing(trueBearing: number) {
@@ -58,21 +61,21 @@ export class WeatherComponent implements OnInit {
          * to just stick with 22 or 23
          */
         if (trueBearing > 338 || trueBearing <= 22) {
-            enumBearing = 'N';
+            enumBearing = 'n';
         } else if (trueBearing > 22 && trueBearing <= 67) {
-            enumBearing = 'NE';
+            enumBearing = 'ne';
         } else if (trueBearing > 67 && trueBearing <= 112) {
-            enumBearing = 'E';
+            enumBearing = 'e';
         } else if (trueBearing > 112 && trueBearing <= 156) {
-            enumBearing = 'SE';
+            enumBearing = 'se';
         } else if (trueBearing > 156 && trueBearing <= 202) {
-            enumBearing = 'S';
+            enumBearing = 's';
         } else if (trueBearing > 202 && trueBearing <= 246) {
-            enumBearing = 'SW';
+            enumBearing = 'sw';
         } else if (trueBearing > 246 && trueBearing <= 292) {
-            enumBearing = 'W';
+            enumBearing = 'w';
         } else if (trueBearing > 292 && trueBearing <= 338) {
-            enumBearing = 'NW';
+            enumBearing = 'nw';
         };
 
         return enumBearing;

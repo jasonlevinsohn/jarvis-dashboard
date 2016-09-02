@@ -20,6 +20,9 @@
                 <md-icon>add</md-icon>
             </button>
         </md-toolbar>
+        <md-toolbar class="weather-bar">
+            <l3-weather></l3-weather>
+        </md-toolbar>
         <div class="form" *ngIf="formShowing">
             <md-card>
                 <md-card-title>Something</md-card-title>
@@ -45,9 +48,11 @@
             <md-card class="weather-widget">
                 <md-card-title>Weather</md-card-title>
                 <md-card-content>
-                    <l3-weather></l3-weather>
+                    md card content md card content md card content
+                    md card content md card content md card content
+                    md card content md card content md card content
+                    md card content md card content md card content 
                 </md-card-content>
-            
             </md-card>
             <md-card *ngFor="let widget of widgets">
                 <md-card-title>{{ widget.title }}</md-card-title>
