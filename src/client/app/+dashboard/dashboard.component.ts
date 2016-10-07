@@ -6,6 +6,7 @@ import { MdUniqueSelectionDispatcher } from '@angular2-material/core/coordinatio
 
 // Widgets
 import { WeatherComponent } from './+weather/weather.component';
+import { FarmgateComponent } from './+farmgate/farmgate.component';
 
 // Services
 import { UserService } from '../shared/index';
@@ -23,7 +24,8 @@ import { WeatherService } from '../shared/index';
         MdCheckbox,
         MdToolbar,
         MdIcon,
-        WeatherComponent
+        WeatherComponent,
+        FarmgateComponent
     ],
     providers: [MdIconRegistry, MdUniqueSelectionDispatcher, UserService, WeatherService]
 })

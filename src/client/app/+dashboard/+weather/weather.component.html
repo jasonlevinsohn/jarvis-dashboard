@@ -3,14 +3,16 @@
         <div class="header-text">Current Condition</div>
         <div class="condition">
             <div class="temp">{{ forecastData.temperature }}&deg;</div>
-            <div class="l3-icon current-condition">
-                <div
-                    class="icon partly-cloudy"
-                    ng-if="forecastData.icon === 'partly-cloudy-day'">
+            <div class="l3-icon current-condition" [ngSwitch]="forecastData.icon">
+                <div class="icon partly-cloudy" *ngSwitchCase="'partly-cloudy-day'">
                     <div class="cloud"></div>
                     <div class="sun">
                         <div class="rays"></div>
                     </div>
+                </div>
+                <div class="icon cloudy" *ngSwitchCase="'cloudy'">
+                    <div class="cloud"></div>
+                    <div class="cloud"></div>
                 </div>
                 <!-- <div class="icon sun-shower"> -->
                 <!--     <div class="cloud"></div> -->
